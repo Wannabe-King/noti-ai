@@ -84,7 +84,7 @@ export function ProtectedContent() {
 
   return (
     <div className="flex justify-center h-screen">
-      <div className="min-w-sm sm:w-3xl h-full flex flex-col">
+      <div className="min-w-sm sm:w-4xl h-full flex flex-col">
         <div className="md:flex justify-between items-center my-4">
           <h1 className="font-semibold text-4xl">Noti-AI</h1>
           <div className="flex gap-2">
@@ -99,6 +99,7 @@ export function ProtectedContent() {
               createNote={createNewNote}
               onSelectNote={onSelectNote}
               removeNote={removeNote}
+              selectedNoteId={selectedNote?.id}
             />
           </div>
           <div className="sm:col-span-2">{renderNoteContent()}</div>

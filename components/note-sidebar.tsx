@@ -9,6 +9,7 @@ interface NoteSiderbarProp {
   onSelectNote: (note: Note) => void;
   createNote: () => void;
   removeNote: (noteId: number) => void;
+  selectedNoteId?: number;
 }
 
 export const NoteSidebar = ({
@@ -16,6 +17,7 @@ export const NoteSidebar = ({
   createNote,
   onSelectNote,
   removeNote,
+  selectedNoteId,
 }: NoteSiderbarProp) => {
   return (
     <Card className="h-full">
@@ -38,6 +40,7 @@ export const NoteSidebar = ({
                   key={note.id}
                   note={note}
                   removeNote={removeNote}
+                  isSelected={note.id === selectedNoteId}
                 ></NoteItem>
               ))}
             </div>

@@ -5,15 +5,21 @@ interface NoteItemProp {
   note: Note;
   removeNote: (noteId: number) => void;
   onSelectNote: () => void;
+  isSelected: boolean;
 }
 
-export const NoteItem = ({ note, removeNote, onSelectNote }: NoteItemProp) => {
+export const NoteItem = ({
+  note,
+  removeNote,
+  onSelectNote,
+  isSelected,
+}: NoteItemProp) => {
   console.log(note.id);
   return (
     <div
       onClick={onSelectNote}
       className={`p-2 rounded-md cursor-pointer
-         ${true ? "bg-blue-500" : ""}
+        ${isSelected ? "bg-stone-300" : ""}
        hover:bg-accent transition-colors flex justify-between items-center`}
     >
       {note.title}
