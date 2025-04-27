@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LogoutButton } from "@/components/logout-button";
 import { AddContent } from "@/components/add-note";
 import { NoteSidebar } from "@/components/note-sidebar";
@@ -8,11 +8,20 @@ import { NoteCard } from "@/components/note-card";
 import { Note } from "@/lib/types";
 import { NoteEditor } from "./note-editor";
 import { EmptyState } from "./empty-state";
+import { loadNotes, saveNotes } from "@/lib/storage";
 
 export function ProtectedContent() {
   const [notes, setNotes] = useState<Note[]>([]);
   const [selectedNote, setSelectedNote] = useState<Note | null>();
   const [editor, setEditor] = useState(false);
+
+  useEffect(() => {
+    setNotes(loadNotes());
+  }, []);
+
+  useEffect(() => {
+    saveNotes(notes);
+  }, [notes]);
 
   const createNewNote = () => {
     const newNote: Note = {
